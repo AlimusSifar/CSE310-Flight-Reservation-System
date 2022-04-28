@@ -1,7 +1,12 @@
 import random as rd
 import datetime as dt
+from pytz import timezone
+
+# LOCAL VARIABLES
+visits = 0
 
 
+# FUNCTIONS
 def salt_generator(text):
     sref = (ord(ch) for ch in text)
     rd.seed(sum(sref))
@@ -40,3 +45,14 @@ def decode_flight_class(flight_class):
         return "First Class"
     else:
         return None
+
+
+def visitor_log(visitor_ip):
+    global visits
+    visits += 1
+    print(visits, visitor_ip)  # Test Line
+    # if visitor_ip == "172.18.0.1":
+    #     return
+    with open("./website/static/visitors.log", "a") as log:
+        datetime_ = dt.datetime.now(tz=timezone("Asia/Dhaka"))
+        log.write(f"{datetime_}, {visitor_ip}\n")

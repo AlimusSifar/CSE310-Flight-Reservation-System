@@ -140,3 +140,7 @@ dmypy.json
 # Log files
 *.log
 log/
+
+
+# replit config files
+.replit

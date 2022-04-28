@@ -1,4 +1,4 @@
-from flask import Blueprint, request, redirect, url_for, flash
+from flask import Blueprint, request, redirect, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user
 from datetime import date
@@ -6,9 +6,6 @@ from . import db
 from .models import User
 from .utils import salt_generator
 
-from colorama import init, Fore
-
-init(autoreset=True)
 
 auth = Blueprint("auth", __name__)
 
@@ -21,13 +18,10 @@ def login():
     if user:
         if check_password_hash(user.password, f"{password}-{user.salt}"):
             login_user(user)
-            # print(f"{Fore.GREEN}[L] {user.last_name.upper()} LOGGED IN!")  # TEST LINE
             flash("Logged in successfully!", category="success")
             return redirect(request.referrer)
-        # print(f"{Fore.RED}[E] INVALID PASSWORD!")  # TEST LINE
         flash("Invalid password!", category="error")
     else:
-        # print(f"{Fore.RED}[E] USER NOT FOUND!")  # TEST LINE
         flash("User not found!", category="error")
     return redirect(request.referrer)
 
@@ -53,13 +47,10 @@ def register():
             db.session.add(user)
             db.session.commit()
             login_user(user, remember=True)
-            # print(f"{Fore.GREEN}[L] NEW USER REGISTERED!")  # TEST LINE
             flash("Account created successfully!", category="success")
             return redirect(request.referrer)
-        # print(f"{Fore.RED}[E] PASSWORDS DID NOT MATCH!")  # TEST LINE
         flash("Passwords don't match.", category="error")
     else:
-        # print(f"{Fore.YELLOW}[W] USER ALREADY REGISTERED!")  # TEST LINE
         flash("Email already registered!", category="error")
     return redirect(request.referrer)
 

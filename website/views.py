@@ -4,10 +4,8 @@ from datetime import date
 from . import db
 from .models import Airport, Flight, Ticket
 
-from .utils import date_to_day, ticket_ref_generator
+from .utils import date_to_day, ticket_ref_generator, visitor_log
 
-from colorama import init, Fore
-init(autoreset=True)
 
 views = Blueprint("views", __name__)
 
@@ -17,6 +15,7 @@ def home():
     data = {
         "airports": Airport.query.order_by(Airport.name).all(),
     }
+    visitor_log(request.remote_addr)
     return render_template("index.html", **data, user=current_user)
 
 
@@ -40,7 +39,6 @@ def search_results():
 @views.route("/booking", methods=["POST"])
 @login_required
 def booking():
-    # print(request.form)  # TEST LINE
     flight = Flight.query.get(request.form.get("flight_id"))
     data = {
         "passengerName": f"{current_user.first_name} {current_user.last_name}",
@@ -54,14 +52,12 @@ def booking():
         "children": request.form.get("childs"),
         "price": request.form.get("price"),
     }
-    # print(data)  # TEST LINE
     return render_template("booking_confirmation.html", data=data, user=current_user)
 
 
 @views.route("/booking-confirmation", methods=["POST"])
 @login_required
 def booking_confirmation():
-    # print(request.form)  # TEST LINE
     date_ = request.form.get("departure_date")
     data = {
         "ref": ticket_ref_generator(current_user.email, date_),
@@ -72,10 +68,8 @@ def booking_confirmation():
         "price": request.form.get("price"),
     }
     ticket = Ticket(**data)
-    # print(ticket)  # TEST LINE
     db.session.add(ticket)
     db.session.commit()
-    # print(f"{Fore.GREEN}[L] NEW FLIGHT BOOKED!")  # TEST LINE
     flash("Booking confirmed!", category="success")
     return redirect(url_for("views.user_dashboard"))
 
@@ -83,11 +77,9 @@ def booking_confirmation():
 @views.route("/dashboard", methods=["GET"])
 @login_required
 def user_dashboard():
-    # print(request.referrer)  # TEST LINE
     data = {
         "tickets": Ticket.query.filter_by(user_id=current_user.email).all()
     }
-    # print(data)  # TEST LINE
     return render_template("user.html", **data, user=current_user)
 
 
@@ -95,9 +87,7 @@ def user_dashboard():
 def manage_flight():
     if request.method == "GET":
         return redirect(url_for("views.home"))
-    # print(request.form)  # TEST LINE
     data = {
         "ticket": Ticket.query.filter_by(ref=request.form.get("ticket_id"), user_id=request.form.get("email")).first(),
     }
-    # print(data)  # TEST LINE
     return render_template("manage-flight-result.html", **data, user=current_user)
