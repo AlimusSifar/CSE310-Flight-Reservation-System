@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "flight-reservation-system"
+version = "1.0.0"
+description = "Project \"Flight Reservation System\" for CSE310 course and learning Python's Flask framework."
+authors = ["Alimus Sifar <alimus.sifar@g.bracu.ac.bd>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Flask-SQLAlchemy = "^2.5.1"
+PyMySQL = "^1.0.2"
+Flask-Login = "^0.6.0"
+
+[tool.poetry.dev-dependencies]
+colorama = "^0.4.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

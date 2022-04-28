@@ -1,0 +1,75 @@
+<nav class="navbar navbar-dark color-theme fixed-top">
+  <!-- Navbar content -->
+  <div class="container">
+
+    <a class="navbar-brand py-0" href="{{ url_for('views.home') }}">
+      <img src="{{ url_for('static', filename='assets/brand-logo.png') }}" alt="brand-logo"
+        class="brand-logo d-inline-block align-text-top rounded-circle" />
+      Dream Airlines
+    </a>
+
+    <div class="navbar-nav">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        {% if user.is_anonymous %}
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-info fw-bold" data-mdb-toggle="modal"
+          data-mdb-target="#login-modal">Login</button>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-secondary fw-bold" data-mdb-toggle="modal"
+          data-mdb-target="#register-modal">Register</button>
+        {% else %}
+        {% if user.is_admin %}
+        <!-- active user -->
+        <a href="{{ url_for('admin.admin_dashboard') }}" class="nav-link d-sm-flex align-items-sm-center">
+          <div class="text-white fw-bold d-none d-sm-block ms-1">Admin {{ user.last_name }}</div>
+        </a>
+        {% else %}
+        <a href="{{ url_for('views.user_dashboard') }}" class="nav-link d-sm-flex align-items-sm-center">
+          <div class="text-white fw-bold d-none d-sm-block ms-1">{{ user.last_name }}</div>
+        </a>
+        {% endif %}
+        <!-- Button logout -->
+        <form method="post" class="d-flex">
+          <button type="submit" class="btn btn-sm btn-info fw-bold"
+            formaction="{{ url_for('auth.logout') }}">logout</button>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<!-- Login Modal -->
+<div class="modal top fade" id="login-modal" tabindex="-1" aria-labelledby="login-modal-label" aria-hidden="true"
+  data-mdb-backdrop="true" data-mdb-keyboard="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header justify-content-center color-theme text-light">
+        <h3 class="modal-title" id="login-modal-label">LOGIN</h3>
+      </div>
+
+      <div class="modal-body">
+        {% include "form-login.html" %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Register Modal -->
+<div class="modal top fade" id="register-modal" tabindex="-1" aria-labelledby="register-modal-label" aria-hidden="true"
+  data-mdb-backdrop="true" data-mdb-keyboard="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header justify-content-center color-theme text-light">
+        <h3 class="modal-title" id="register-modal-label">REGISTER</h3>
+      </div>
+
+      <div class="modal-body">
+        {% include "form-register.html" %}
+      </div>
+    </div>
+  </div>
+</div>

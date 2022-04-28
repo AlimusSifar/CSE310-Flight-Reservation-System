@@ -1,0 +1,108 @@
+img.brand-logo {
+    width: 35px;
+    height: 35px;
+    font-weight: 900;
+    background-color: steelblue;
+}
+
+.navbar-brand {
+    font-size: 1.75rem;
+    font-family: "Kaushan Script";
+}
+
+.image-mask {
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.fs-7 {
+    font-size: 0.9rem;
+}
+
+.fs-8 {
+    font-size: 0.8rem;
+}
+
+.text-light-grey {
+    color: lightgray;
+}
+
+.color-theme {
+    background-color: #26a0da;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5c636a;
+}
+
+.btn-check:focus+.btn-secondary,
+.btn-secondary:focus {
+    background-color: #6c757d;
+}
+
+.btn-check:active+.btn-secondary,
+.btn-check:checked+.btn-secondary,
+.btn-secondary.active,
+.btn-secondary:active,
+.show>.btn-secondary.dropdown-toggle {
+    background-color: #565e64;
+}
+
+.btn-info.focus,
+.btn-info:focus,
+.btn-info:hover {
+    background-color: #3aa0cb;
+}
+
+.btn-check:active+.btn-info,
+.btn-check:checked+.btn-info,
+.btn-info.active,
+.btn-info:active,
+.show>.btn-info.dropdown-toggle {
+    background-color: #1088b0;
+}
+
+.form-outline .form-control {
+    background: #fff;
+}
+
+.table th {
+    font-weight: bold;
+}
+
+.table-tr-th {
+    text-align: end;
+}
+
+table thead tr {
+    position: sticky;
+    top: 0;
+    background-color: #BBBBBB;
+}
+
+.h-350px {
+    height: 350px;
+}
+
+.h-375px {
+    height: 375px;
+}
+
+.h-400px {
+    height: 400px;
+}
+
+.bdf-5px {
+    backdrop-filter: blur(5px);
+}
+
+.icon-circular {
+    border-radius: 50%;
+    padding: 0;
+    width: 2.125rem;
+    height: 2.125rem;
+}

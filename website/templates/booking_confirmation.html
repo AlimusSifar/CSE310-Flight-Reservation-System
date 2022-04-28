@@ -1,0 +1,68 @@
+{% extends "base.html" %} {% block title %} Booking Confirmation {% endblock %} {% block main %}
+<div class="row pt-4">
+  <div class="col">
+    <h1 class="text-center text-dark">Booking Confirmation</h1>
+  </div>
+</div>
+<div class="row pb-4">
+  <div class="col">
+    <h4 class="text-center text-dark">Your booking details are below:</h4>
+  </div>
+</div>
+<div class="row pb-4">
+  <div class="col">
+
+    <form method="post">
+      <table class="table table-striped mb-4">
+        <thead>
+          <tr>
+            <th scope="col">Passenger</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Adults</th>
+            <th scope="col">Children</th>
+            <th scope="col">Class</th>
+            <th scope="col">Price (in BDT)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>{{ data.passengerName }}</th>
+            <td>{{ data.fromDestination }}</td>
+            <td>{{ data.toDestination }}</td>
+            <td>{{ data.departureDate }}</td>
+            <td>{{ data.departureTime }}</td>
+            <td>{{ data.adults }}</td>
+            <td>{{ data.children }}</td>
+            <td>{{ flight_class(data.class) }}</td>
+            <td>{{ data.price }}</td>
+          </tr>
+      </table>
+
+      <input type="number" name="flight_id" value="{{ data.flight_id }}" hidden />
+      <input type="date" name="departure_date" value="{{ data.departureDate }}" hidden />
+      <input type="text" name="flight_class" value="{{ data.class }}" hidden />
+      <input type="number" name="price" value="{{ data.price }}" hidden />
+
+      <!-- Credit card input -->
+      <div class="d-flex justify-content-center mb-4">
+        <div class="form-outline">
+          <input type="text" id="input-booking-creditcard" name="credit_card" class="form-control form-control-lg"
+            data-mdb-showcounter="true" minlength="16" maxlength="16" required />
+          <label class="form-label" for="input-flight-callsign">Credit Card</label>
+          <div class="form-helper"></div>
+        </div>
+      </div>
+
+      <!-- Submit button -->
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary mb-4" onclick="return confirm_booking('Are you sure?')"
+          formaction="{{ url_for('views.booking_confirmation') }}">Confirm</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

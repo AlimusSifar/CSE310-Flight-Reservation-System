@@ -1,0 +1,41 @@
+<div class="tab-pane px-3 fade show active" id="v-tabs-aircraft" role="tabpanel" aria-labelledby="v-tabs-aircraft-tab">
+  <form method="post">
+
+    <div class="form-outline mb-4">
+      <input type="text" id="input-aircraft-name" name="aircraftName" class="form-control form-control-lg"
+        data-mdb-showcounter="true" maxlength="32" />
+      <label class="form-label" for="input-aircraft-name">Aircraft's Name</label>
+      <div class="form-helper"></div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <input type="text" id="input-aircraft-type" name="aircraftType" class="form-control form-control-lg"
+        data-mdb-showcounter="true" maxlength="6" />
+      <label class="form-label" for="input-aircraft-type">Aircraft's Type</label>
+      <div class="form-helper"></div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <input type="text" id="input-aircraft-reg" name="aircraftReg" class="form-control form-control-lg"
+        data-mdb-showcounter="true" maxlength="8" placeholder="XX-XXX" />
+      <label class="form-label" for="input-aircraft-reg">Aircraft's Registration Number</label>
+      <div class="form-helper"></div>
+    </div>
+
+    <div class="form-outline mb-1">
+      <input type="number" id="input-aircraft-capacity-number" name="aircraftCapacity"
+        class="form-control form-control-lg" min="2" max="1000" value="2" placeholder="2 ~ 1000">
+      <label class="form-label" for="input-aircraft-capacity">Max Capacity</label>
+    </div>
+
+    <div class="range mb-4">
+      <input type="range" id="input-aircraft-capacity-range" class="form-range" min="2" max="1000" value="2" />
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-primary mb-4" formaction="{{ url_for('admin.add_aircraft') }}">Add</button>
+    </div>
+
+  </form>
+</div>

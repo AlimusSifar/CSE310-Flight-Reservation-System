@@ -1,0 +1,60 @@
+{% extends "base.html" %} {% block title %} Home {% endblock %} {% block main %}
+<div class="tab-content h-375px" id="v-tabs-tabContent">
+  <div class="text-dark h1 text-center my-3"> Search Results </div>
+  <div class="overflow-auto h-350px">
+    <table class="table table-striped table-hover table-borderless table-sm caption-top">
+      {% if flights %}
+      <thead>
+        <tr>
+          <!-- <th scope="col">#</th> -->
+          <th scope="col">Callsign</th>
+          <th scope="col">Departing Airport</th>
+          <th scope="col">Arriving Airport</th>
+          <th scope="col">Departing Date</th>
+          <th scope="col">Departure Time</th>
+          <th scope="col">Arrival Time</th>
+          <th scope="col">Aircraft</th>
+          <th scope="col">Price (BDT)</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for flight in flights %}
+        <tr>
+          <!-- <th scope="row">{{ flight.id }}</th> -->
+          <td>{{ flight.callsign }}</td>
+          <td>{{ flight.departure.name }}, {{ flight.departure.city }}</td>
+          <td>{{ flight.arrival.name }}, {{ flight.arrival.city }}</td>
+          <td>{{ departing_date }}</td>
+          <td>{{ _12Hours(flight.departure_time) }}</td>
+          <td>{{ _12Hours(flight.arrival_time) }}</td>
+          <td>{{ flight.aircraft.name }}</td>
+          <td>{{ calculate_fare(flight.base_price, adults, childs, flight_class) }}</td>
+          <form method="post">
+            <input name="flight_id" value="{{ flight.id }}" hidden />
+            <input name="departing_date" value="{{ departing_date }}" hidden />
+            <input name="adults" value="{{ adults }}" hidden />
+            <input name="childs" value="{{ childs }}" hidden />
+            <input name="flight_class" value="{{ flight_class }}" hidden />
+            <input name="price" value="{{ calculate_fare(flight.base_price, adults, childs, flight_class)}}" hidden />
+            <td>
+              {% if user.is_authenticated %}
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-primary" formaction="{{ url_for('views.booking') }}">Book
+              </button>
+              {% else %}
+              <a class="btn btn-primary" href="{{ url_for('auth.login') }}" data-mdb-target="#login-modal"
+                data-mdb-toggle="modal" data-mdb-dismiss="modal">Login</a>
+              {% endif %}
+            </td>
+        </tr>
+        </form>
+        {% endfor %}
+      </tbody>
+      {% else %}
+      <h1 class="text-dark">Sorry! 😞 No flights available</h1>
+      {% endif %}
+    </table>
+  </div>
+</div>
+{% endblock %}

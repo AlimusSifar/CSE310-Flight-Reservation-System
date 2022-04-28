@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block title %} User {% endblock %} {% block main %}
+<!-- Tab navs -->
+<div class="nav justify-content-center nav-tabs p-3" id="v-tabs-tab" role="tablist" aria-orientation="vertical">
+  <a class="nav-link px-3 fs-6 fw-bold active" id="v-tabs-dashboard-tab" data-mdb-toggle="tab" href="#v-tabs-dashboard"
+    role="tab" aria-controls="v-tabs-dashboard" aria-selected="true">Dashboard</a>
+</div>
+<!-- Tab navs -->
+
+<!-- Tab content -->
+<div class="tab-content" id="v-tabs-tabContent">
+  <!-- Dashboard tab -->
+  <div class="tab-pane pb-5 fade show active" id="v-tabs-dashboard" role="tabpanel"
+    aria-labelledby="v-tabs-dashboard-tab">
+    <!-- Dashboard items -->
+    {% include "dashboard.html" %}
+  </div>
+</div>
+<!-- Tab content -->
+{% endblock %}

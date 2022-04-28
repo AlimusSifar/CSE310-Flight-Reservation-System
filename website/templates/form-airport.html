@@ -1,0 +1,45 @@
+<div class="tab-pane px-3 fade" id="v-tabs-airport" role="tabpanel" aria-labelledby="v-tabs-airport-tab">
+  <form method="post">
+
+    <div class="form-outline mb-4">
+      <input type="text" id="input-airport-iata" name="iata" class="form-control form-control-lg"
+        data-mdb-showcounter="true" maxlength="3" />
+      <label class="form-label" for="input-airport-iata">Airport's IATA</label>
+      <div class="form-helper"></div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <input type="text" id="input-airport-name" name="airportName" class="form-control form-control-lg"
+        data-mdb-showcounter="true" maxlength="64" />
+      <label class="form-label" for="input-airport-name">Airport's Name</label>
+      <div class="form-helper"></div>
+    </div>
+
+    <!-- 2 column grid layout with inputs for the airport's country and city -->
+    <div class="row g-5">
+      <div class="col-md-6 mb-4">
+        <div class="form-outline">
+          <input type="text" id="input-airport-country" name="airportCountry" class="form-control form-control-lg"
+            data-mdb-showcounter="true" maxlength="32" />
+          <label class="form-label" for="input-airport-country">Airport's Country</label>
+          <div class="form-helper"></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <div class="form-outline mb-4">
+          <input type="text" id="input-airport-city" name="airportCity" class="form-control form-control-lg"
+            data-mdb-showcounter="true" maxlength="32" />
+          <label class="form-label" for="input-airport-city">Airport's City</label>
+          <div class="form-helper"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-primary mb-4" formaction="{{ url_for('admin.add_airport') }}">Add</button>
+    </div>
+
+  </form>
+</div>

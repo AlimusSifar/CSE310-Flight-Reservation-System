@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block title %} Admin {% endblock %} {% block main %}
+<!-- Tab navs -->
+<div class="nav justify-content-center nav-tabs p-3" id="v-tabs-tab" role="tablist" aria-orientation="vertical">
+  <a class="nav-link px-3 fs-6 fw-bold active" id="v-tabs-dashboard-tab" data-mdb-toggle="tab" href="#v-tabs-dashboard"
+    role="tab" aria-controls="v-tabs-dashboard" aria-selected="true">Dashboard</a>
+  <a class="nav-link px-3 fs-6" id="v-tabs-dataForms-tab" data-mdb-toggle="tab" href="#v-tabs-dataForms" role="tab"
+    aria-controls="v-tabs-dataForms" aria-selected="false">Data Forms</a>
+</div>
+<!-- Tab navs -->
+
+<!-- Tab content -->
+<div class="tab-content h-375px" id="v-tabs-tabContent">
+  <!-- Dashboard tab -->
+  <div class="tab-pane pb-5 fade show active" id="v-tabs-dashboard" role="tabpanel"
+    aria-labelledby="v-tabs-dashboard-tab">
+    <!-- Dashboard items -->
+    {% include "dashboard.html" %}
+  </div>
+
+  <!-- Data forms tab -->
+  <div class="tab-pane p-3 fade" id="v-tabs-dataForms" role="tabpanel" aria-labelledby="v-tabs-aircraft-tab">
+    <!-- Data form items -->
+    {% include "admin-forms.html" %}
+  </div>
+
+</div>
+<!-- Tab content -->
+{% endblock %}

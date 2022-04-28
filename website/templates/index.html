@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block title %} Home {% endblock %} {% block main %}
+<!-- Tab navs -->
+<div class="nav justify-content-center nav-tabs p-3" id="v-tabs-tab" role="tablist" aria-orientation="vertical">
+  <a class="nav-link px-3 fs-6 fw-bold active" id="v-tabs-searchFlight-tab" data-mdb-toggle="tab"
+    href="#v-tabs-searchFlight" role="tab" aria-controls="v-tabs-searchFlight" aria-selected="true">Search
+    Flight</a>
+  <a class="nav-link px-3 fs-6" id="v-tabs-manageFlight-tab" data-mdb-toggle="tab" href="#v-tabs-manageFlight"
+    role="tab" aria-controls="v-tabs-manageFlight" aria-selected="false">Manage Flight</a>
+  <!-- <a class="nav-link px-3 fs-6" id="v-tabs-flightStatus-tab" data-mdb-toggle="tab" href="#v-tabs-flightStatus"
+        role="tab" aria-controls="v-tabs-flightStatus" aria-selected="false">Flight Status</a> -->
+</div>
+<!-- Tab navs -->
+
+<!-- Tab content -->
+<div class="tab-content h-350px w-75" id="v-tabs-tabContent">
+  <!-- Search flight tab -->
+  {% include "form-search-flight.html" %}
+
+  <!-- Manage flight tab -->
+  {% include "form-manage-flight.html" %}
+
+</div>
+<!-- Tab content -->
+{% endblock %}

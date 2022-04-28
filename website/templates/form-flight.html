@@ -1,0 +1,97 @@
+<div class="tab-pane px-3 fade" id="v-tabs-flight" role="tabpanel" aria-labelledby="v-tabs-flight-tab">
+  <form method="post">
+
+    <!-- 2 column grid layout with inputs for the departing date and flight class -->
+    <div class="row g-5">
+      <!-- Callsign input -->
+      <div class="col-md-6 mb-4">
+        <div class="form-outline">
+          <input type="text" id="input-flight-callsign" name="callsign" class="form-control form-control-lg"
+            data-mdb-showcounter="true" maxlength="5" required />
+          <label class="form-label" for="input-flight-callsign">Callsign</label>
+          <div class="form-helper"></div>
+        </div>
+      </div>
+
+      <!-- Base fare input -->
+      <div class="col-md-6 mb-4">
+        <div class="form-outline">
+          <input type="number" id="input-flight-baseFare" name="baseFare" class="form-control form-control-lg"
+            required />
+          <label class="form-label" for="input-flight-baseFare">Base fare</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aircraft input -->
+    <div class="mb-4">
+      <select class="form-control form-control-lg" id="input-flight-aircraft" name="aircraft" required>
+        <option selected disabled>Select an Aircraft</option>
+        {% for aircraft in aircrafts %}
+        <option value="{{ aircraft.reg_no }}">{{ aircraft.reg_no }} | {{ aircraft.name }} [{{ aircraft.capacity }}]
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- 3 column grid layout with selections for the flight schedule -->
+    <!-- Schedule input -->
+    <div class="row g-5">
+      <div class="col-md-4 mb-4">
+        <select class="form-control form-control-lg" name="flightDay">
+          <option selected disabled>Select a Day</option>
+          <option value="5">Saturday</option>
+          <option value="6">Sunday</option>
+          <option value="0">Monday</option>
+          <option value="1">Tuesday</option>
+          <option value="2">Wedneday</option>
+          <option value="3">Thursday</option>
+          <option value="4">Friday</option>
+        </select>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="form-outline">
+          <input type="time" id="input-flight-departureTime" class="form-control form-control-lg" name="departureTime"
+            value="00:00" step="300">
+          <label class="form-label" for="input-flight-departureTime">Departure Time</label>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="form-outline">
+          <input type="time" id="input-flight-arrivalTime" class="form-control form-control-lg" name="arrivalTime"
+            value="00:00" step="300">
+          <label class="form-label" for="input-flight-arrivalTime">Arrival Time</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 column grid layout with selections for the departing and arriving destinations -->
+    <div class="row g-5">
+      <!-- Departing Airport input -->
+      <div class="col-md-6 mb-4">
+        <select class="form-control form-control-lg" id="input-flight-departingAirport" name="departingAirport"
+          required>
+          <option selected disabled>Select a Departing Airport</option>
+          {% for airport in airports %}
+          <option value="{{ airport.iata }}">[{{ airport.iata }}] {{ airport.city }}, {{ airport.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <!-- Arriving Airport input -->
+      <div class="col-md-6 mb-4">
+        <select class="form-control form-control-lg" id="input-flight-arrivingAirport" name="arrivingAirport" required>
+          <option selected disabled>Select an Arriving Airport</option>
+          {% for airport in airports %}
+          <option value="{{ airport.iata }}">[{{ airport.iata }}] {{ airport.city }}, {{ airport.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <!-- Submit button -->
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary mb-4" formaction="{{ url_for('admin.add_flight') }}">Add</button>
+    </div>
+
+  </form>
+</div>

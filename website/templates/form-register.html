@@ -1,0 +1,83 @@
+<div class="card-body p-4 text-center">
+
+  <form method="post">
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="form-outline">
+          <input type="text" id="input-register-firstName" name="firstName" class="form-control form-control-lg"
+            required />
+          <label class="form-label" for="input-register-firstName">First name</label>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="form-outline">
+          <input type="text" id="input-register-lastName" name="lastName" class="form-control form-control-lg"
+            required />
+          <label class="form-label" for="input-register-lastName">Last name</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input type="email" id="input-register-email" name="email" class="form-control form-control-lg" required />
+      <label class="form-label" for="input-register-email">Email</label>
+    </div>
+
+    <!-- 2 column grid layout with inputs for the date of birth and gender -->
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="form-outline">
+          <input type="date" id="input-register-dateOfBirth" name="dateOfBirth"
+            class="form-control form-control-lg datepicker" required />
+          <label class="form-label" for="input-register-dateOfBirth">Date of Birth</label>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <select class="form-control form-control-lg" id="input-register-gender" name="gender" required>
+          <option selected disabled>Select a gender</option>
+          <option value="m">Male</option>
+          <option value="f">Female</option>
+          <option value="o">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Cell phone input -->
+    <!-- <div class="form-outline mb-4">
+      <input type="tel" id="input-register-telephone" name="telephone" class="form-control form-control-lg" required />
+      <label class="form-label" for="input-register-telephone">Telephone no.</label>
+    </div> -->
+
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <input type="password" id="input-register-password" name="password" class="form-control form-control-lg"
+        required />
+      <label class="form-label" for="input-register-password">Password</label>
+    </div>
+
+    <!-- Password confirmation input -->
+    <div class="form-outline mb-3">
+      <input type="password" id="input-register-passwordCheck" name="passwordCheck" class="form-control form-control-lg"
+        required />
+      <label class="form-label" for="input-register-passwordCheck">Re-enter password</label>
+    </div>
+
+    <!-- Checkbox -->
+    <div class="form-check d-flex justify-content-start mb-3">
+      <input type="checkbox" class="form-check-input" id="agreement" required />
+      <label class="form-check-label" for="agreement">I agree to share these informations.</label>
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary mb-4" id="register-button" formaction="{{ url_for('auth.register') }}"
+      disabled> Register </button>
+
+    <!-- Link to login -->
+    <div class="text-center">
+      Already have an account? <a class="link-primary" href="{{ url_for('auth.login') }}" data-mdb-target="#login-modal"
+        data-mdb-toggle="modal" data-mdb-dismiss="modal">Login here</a>.
+    </div>
+  </form>
+</div>

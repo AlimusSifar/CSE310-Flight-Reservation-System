@@ -1,0 +1,26 @@
+<div class="card-body p-4 text-center">
+  <form method="post">
+
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input type="email" id="input-login-email" name="email" class="form-control form-control-lg" required />
+      <label class="form-label" for="input-login-email">Email</label>
+    </div>
+
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <input type="password" id="input-login-password" name="password" class="form-control form-control-lg" required />
+      <label class="form-label" for="input-login-password">Password</label>
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary mb-4" formaction="{{ url_for('auth.login') }}"> Login </button>
+
+    <!-- Link to register -->
+    <div class="text-center">
+      Don't have an account? <a href="{{ url_for('auth.register') }}" class="link-primary"
+        data-mdb-target="#register-modal" data-mdb-toggle="modal" data-mdb-dismiss="modal">Register here</a>
+    </div>
+
+  </form>
+</div>

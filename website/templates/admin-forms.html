@@ -1,0 +1,28 @@
+<div class="row bg-light opacity-90 justify-content-center align-items-baseline">
+  <div class="border-end col-5 col-md-4 col-lg-3 col-xl-2">
+    <!-- Tab navs -->
+    <div class="nav flex-column justify-content-end nav-tabs text-end" id="v-tabs-tab-inner" role="tablist"
+      aria-orientation="vertical">
+      <a class="nav-link px-3 fs-6 fw-bold active" id="v-tabs-aircraft-tab" data-mdb-toggle="tab"
+        href="#v-tabs-aircraft" role="tab" aria-controls="v-tabs-aircraft" aria-selected="true">Aircraft</a>
+      <a class="nav-link px-3 fs-6" id="v-tabs-airport-tab" data-mdb-toggle="tab" href="#v-tabs-airport" role="tab"
+        aria-controls="v-tabs-airport" aria-selected="false">Airport</a>
+      <a class="nav-link px-3 fs-6" id="v-tabs-flight-tab" data-mdb-toggle="tab" href="#v-tabs-flight" role="tab"
+        aria-controls="v-tabs-flight" aria-selected="false">Flight</a>
+    </div>
+    <!-- Tab navs -->
+  </div>
+
+  <div class="col-7 col-md-8 col-lg-9 col-xl-10">
+    <!-- Tab content -->
+    <div class="tab-content h-350px" id="v-tabs-tabContent">
+      <!-- Aircraft form -->
+      {% include "form-aircraft.html" %}
+      <!-- Airport form -->
+      {% include "form-airport.html" %}
+      <!-- Flight form -->
+      {% include "form-flight.html" %}
+    </div>
+    <!-- Tab content -->
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="tab-pane m-auto p-3 fade show active" id="v-tabs-searchFlight" role="tabpanel"
+  aria-labelledby="v-tabs-searchFlight-tab">
+  <form method="get">
+
+    <!-- 2 column grid layout with selections for the departing and arriving destinations -->
+    <div class="row g-5">
+      <div class="col-md-6 mb-4">
+        <select class="form-control form-control-lg" id="input-search-departingAirport" name="departingAirport"
+          required>
+          <option selected disabled>Departing airport</option>
+          {% for airport in airports %}
+          <option value="{{ airport.iata }}">[{{ airport.iata }}] {{ airport.city }}, {{ airport.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-6 mb-4">
+        <select class="form-control form-control-lg" id="input-search-arrivingAirport" name="arrivingAirport" required>
+          <option selected disabled>Arriving airport</option>
+          {% for airport in airports %}
+          <option value="{{ airport.iata }}">[{{ airport.iata }}] {{ airport.city }}, {{ airport.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <!-- 2 column grid layout with inputs for the departing date and flight class -->
+    <div class="row g-5">
+      <div class="col-md-6 mb-4">
+        <div class="form-outline">
+          <input type="date" id="input-search-departingDate" name="departingDate" class="form-control form-control-lg"
+            required />
+          <label class="form-label" for="input-search-departingDate">Departing date</label>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <select class="form-control form-control-lg" id="input-search-flightClass" name="flightClass" required>
+          <option selected disabled>Flight class</option>
+          <option value="0">Economy</option>
+          <option value="1">Business</option>
+          <option value="2">First Class</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 2 column grid layout with inputs for the adults and childs -->
+    <div class="row g-5">
+      <div class="col-md-6 mb-4">
+        <div class="form-outline">
+          <input type="number" id="input-search-personAdult" name="adults" class="form-control form-control-lg" min="1"
+            max="10" value="1" placeholder="2 ~ 10">
+          <label class="form-label" for="input-search-personAdult">Adults</label>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="form-outline">
+          <input type="number" id="input-search-personChild" name="childs" class="form-control form-control-lg" min="0"
+            max="20" value="0" placeholder="0 ~ 20">
+          <label class="form-label" for="input-search-personChild">Childs</label>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Submit button -->
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary mb-4"
+        formaction="{{ url_for('views.search_results') }}">Search</button>
+    </div>
+
+  </form>
+</div>

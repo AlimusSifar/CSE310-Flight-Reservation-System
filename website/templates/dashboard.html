@@ -1,0 +1,87 @@
+<div class="overflow-auto h-350px mx-4">
+  <table class="table table-striped table-hover table-borderless table-sm">
+
+    {% if user.is_admin %}
+    <!-- ADMIN PART -->
+    {% if flights %}
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Callsign</th>
+        <th scope="col">Departing Airport</th>
+        <th scope="col">Arriving Airport</th>
+        <th scope="col">Weekday</th>
+        <th scope="col">Departure Time</th>
+        <th scope="col">Arrivial Time</th>
+        <th scope="col">Aircraft</th>
+        <th scope="col">Cost (BDT)</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for flight in flights %}
+      <tr>
+        <th scope="row">{{ flight.id }}</th>
+        <td>{{ flight.callsign }}</td>
+        <td>{{ flight.departure.name }}, {{ flight.departure.city }}</td>
+        <td>{{ flight.arrival.name }}, {{ flight.arrival.city }}</td>
+        <td>{{ dayToString(flight) }}</td>
+        <td>{{ _12Hours(flight.departure_time) }}</td>
+        <td>{{ _12Hours(flight.arrival_time) }}</td>
+        <td>{{ flight.aircraft.name }}</td>
+        <td>{{ flight.base_price }}</td>
+        <td>
+          <form method="post">
+            <input type="number" name="flight_id" value="{{ flight.id }}" hidden>
+            <button type="submit" class="btn btn-danger text-dark icon-circular"
+              formaction="{{ url_for('admin.delete_flight') }}">
+              <i class="fas fa-trash-alt fa-1xl"></i>
+            </button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    {% else %}
+    <h1 class="text-dark">Sorry! 😞 No flights available</h1>
+    {% endif %}
+    {% else %}
+    <!-- USER PART -->
+    {% if tickets %}
+    <thead>
+      <tr>
+        <th scope="col">Ref. No.</th>
+        <th scope="col">Callsign</th>
+        <th scope="col">Departing Airport</th>
+        <th scope="col">Arriving Airport</th>
+        <th scope="col">Date</th>
+        <th scope="col">Departure Time</th>
+        <th scope="col">Arrivial Time</th>
+        <th scope="col">Aircraft</th>
+        <th scope="col">Class</th>
+        <th scope="col">Price (BDT)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ticket in tickets %}
+      <tr>
+        <th scope="row">{{ ticket.ref }}</th>
+        <td>{{ ticket.flight.callsign }}</td>
+        <td>{{ ticket.flight.departure.name }}, {{ ticket.flight.departure.city }}</td>
+        <td>{{ ticket.flight.arrival.name }}, {{ ticket.flight.arrival.city }}</td>
+        <td>{{ ticket.date }}</td>
+        <td>{{ _12Hours(ticket.flight.departure_time) }}</td>
+        <td>{{ _12Hours(ticket.flight.arrival_time) }}</td>
+        <td>{{ ticket.flight.aircraft.name }}</td>
+        <td>{{ flight_class(ticket.flight_class) }}</td>
+        <td>{{ ticket.price }}</td>
+      </tr>
+    </tbody>
+    {% endfor %}
+    {% else %}
+    <h1 class="text-dark">Sorry! 😞 No flights available</h1>
+    {% endif %}
+    {% endif %}
+
+  </table>
+</div>
